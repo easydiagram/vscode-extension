@@ -2,7 +2,7 @@
   "name": "diagram-dsl",
   "displayName": "EasyDiagram",
   "description": "Syntax highlighting, live diagnostics and format-on-save for .diagram files, the diagram language your coding agents write.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "publisher": "easydiagram",
   "license": "MIT",
@@ -87,8 +87,8 @@
   },
   "homepage": "https://easydiagram.io",
   "galleryBanner": {
-    "color": "#0a53e6",
-    "theme": "dark"
+    "color": "#f4f7fe",
+    "theme": "light"
   },
   "pricing": "Free",
   "qna": "https://github.com/easydiagram/vscode-extension/discussions"

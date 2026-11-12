@@ -10,10 +10,10 @@
 </p>
 
 <p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=easydiagram.diagram-dsl"><img src="https://img.shields.io/visual-studio-marketplace/v/easydiagram.diagram-dsl?label=Marketplace&color=0a53e6" alt="Marketplace version"></a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=easydiagram.diagram-dsl"><img src="https://img.shields.io/visual-studio-marketplace/i/easydiagram.diagram-dsl?label=installs" alt="Installs"></a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=easydiagram.diagram-dsl"><img src="https://img.shields.io/visual-studio-marketplace/d/easydiagram.diagram-dsl?label=downloads" alt="Downloads"></a>
-  <a href="https://open-vsx.org/extension/easydiagram/diagram-dsl"><img src="https://img.shields.io/open-vsx/v/easydiagram/diagram-dsl?label=Open%20VSX" alt="Open VSX version"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=easydiagram.diagram-dsl"><img src="https://vsmarketplacebadges.dev/version-short/easydiagram.diagram-dsl.svg?label=Marketplace&color=0a53e6" alt="Marketplace version"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=easydiagram.diagram-dsl"><img src="https://vsmarketplacebadges.dev/installs-short/easydiagram.diagram-dsl.svg?label=installs" alt="Installs"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=easydiagram.diagram-dsl"><img src="https://vsmarketplacebadges.dev/downloads-short/easydiagram.diagram-dsl.svg?label=downloads" alt="Downloads"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=easydiagram.diagram-dsl&ssr=false#review-details"><img src="https://vsmarketplacebadges.dev/rating-star/easydiagram.diagram-dsl.svg?label=rating" alt="Rating"></a>
   <a href="https://github.com/easydiagram/vscode-extension/actions/workflows/ci.yml"><img src="https://github.com/easydiagram/vscode-extension/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></a>
 </p>
@@ -23,7 +23,6 @@
 - **VS Code:** install
   [EasyDiagram from the Marketplace](https://marketplace.visualstudio.com/items?itemName=easydiagram.diagram-dsl), or run
   `code --install-extension easydiagram.diagram-dsl`.
-- **Cursor, Windsurf, VSCodium:** install it from [Open VSX](https://open-vsx.org/extension/easydiagram/diagram-dsl).
 - **Offline:** download the `.vsix` from the [latest release](https://github.com/easydiagram/vscode-extension/releases/latest) and
   run `code --install-extension diagram-dsl.vsix`.
 
@@ -78,7 +77,7 @@ Press **F5** in VS Code to launch an Extension Development Host with the extensi
 
 Bump `version` in `packages/vscode-extension/package.json`, add a `CHANGELOG.md` entry and push a `v<version>` tag. The
 `publish` workflow tests, packages and publishes to the Visual Studio Marketplace with Trusted Publishing (no stored
-token), to Open VSX, and attaches the `.vsix` to a GitHub release.
+token), to Open VSX once an `OVSX_PAT` secret is set, and attaches the `.vsix` to a GitHub release.
 
 ## License
 

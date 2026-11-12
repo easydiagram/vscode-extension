@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+- A light listing banner, so the whole logo shows on the Marketplace page.
+
 ## 0.1.0
 
 First Marketplace release.
