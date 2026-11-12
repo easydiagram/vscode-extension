@@ -1,0 +1,95 @@
+{
+  "name": "diagram-dsl",
+  "displayName": "EasyDiagram",
+  "description": "Syntax highlighting, live diagnostics and format-on-save for .diagram files, the diagram language your coding agents write.",
+  "version": "0.1.0",
+  "private": true,
+  "publisher": "easydiagram",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/easydiagram/vscode-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/easydiagram/vscode-extension/issues"
+  },
+  "keywords": [
+    "diagram",
+    "architecture",
+    "dsl",
+    "mcp",
+    "agents",
+    "diagrams as code"
+  ],
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Linters"
+  ],
+  "main": "./dist/extension.cjs",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "activationEvents": [],
+  "contributes": {
+    "languages": [
+      {
+        "id": "diagram",
+        "aliases": [
+          "Diagram",
+          "diagram"
+        ],
+        "extensions": [
+          ".diagram"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "diagram",
+        "scopeName": "source.diagram",
+        "path": "./syntaxes/diagram.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[diagram]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "easydiagram.diagram-dsl",
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+      }
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "package": "node build.mjs && vsce package --no-dependencies -o ../../diagram-dsl.vsix",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@app/dsl": "workspace:*",
+    "@types/node": "26.6.6",
+    "@types/vscode": "1.95.0",
+    "@vscode/vsce": "4.1.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0",
+    "vscode-oniguruma": "2.0.1",
+    "vscode-textmate": "9.3.2"
+  },
+  "homepage": "https://easydiagram.io",
+  "galleryBanner": {
+    "color": "#0a53e6",
+    "theme": "dark"
+  },
+  "pricing": "Free",
+  "qna": "https://github.com/easydiagram/vscode-extension/discussions"
+}

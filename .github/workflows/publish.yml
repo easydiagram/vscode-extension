@@ -1,0 +1,38 @@
+# Publishes a tag (v1.2.3) to the Visual Studio Marketplace with Trusted Publishing (OIDC, no stored token),
+# to Open VSX when an OVSX_PAT secret is set, and attaches the .vsix to a GitHub release.
+name: publish
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+  id-token: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: marketplace
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - name: The tag matches the extension version
+        run: |
+          version=$(node -p "require('./packages/vscode-extension/package.json').version")
+          test "v$version" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME != v$version"; exit 1; }
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm package
+      - name: Visual Studio Marketplace
+        working-directory: packages/vscode-extension
+        run: pnpm exec vsce publish --oidc --packagePath ../../diagram-dsl.vsix
+      - name: Open VSX
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        if: env.OVSX_PAT != ''
+        run: npx --yes ovsx@1.3.0 publish diagram-dsl.vsix -p "$OVSX_PAT"
+      - name: GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" diagram-dsl.vsix --title "$GITHUB_REF_NAME" --notes "See [CHANGELOG.md](packages/vscode-extension/CHANGELOG.md)."

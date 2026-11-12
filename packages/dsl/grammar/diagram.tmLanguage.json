@@ -1,0 +1,158 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Diagram",
+  "scopeName": "source.diagram",
+  "patterns": [
+    {
+      "include": "#header"
+    },
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#group"
+    },
+    {
+      "include": "#attributes"
+    },
+    {
+      "include": "#label"
+    },
+    {
+      "include": "#string"
+    },
+    {
+      "include": "#arrow"
+    },
+    {
+      "include": "#id"
+    },
+    {
+      "include": "#punctuation"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.double-slash.diagram",
+      "match": "//.*$"
+    },
+    "header": {
+      "match": "^\\s*(type|direction|title)\\s*(:)\\s*(\"(?:[^\"\\\\]|\\\\.)*\"?|.*?)(?=\\s+//|\\s*;|\\s*$)",
+      "captures": {
+        "1": {
+          "name": "keyword.other.header.diagram"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.diagram"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#string"
+            },
+            {
+              "match": ".+",
+              "name": "string.unquoted.header-value.diagram"
+            }
+          ]
+        }
+      }
+    },
+    "group": {
+      "match": "\\b(group)\\b(?=\\s+[\"A-Za-z_])",
+      "captures": {
+        "1": {
+          "name": "keyword.control.group.diagram"
+        }
+      }
+    },
+    "string": {
+      "name": "string.quoted.double.diagram",
+      "begin": "\"",
+      "end": "\"|$",
+      "patterns": [
+        {
+          "name": "constant.character.escape.diagram",
+          "match": "\\\\[\"\\\\]"
+        }
+      ]
+    },
+    "attributes": {
+      "name": "meta.attributes.diagram",
+      "begin": "\\[",
+      "end": "\\]",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.brackets.begin.diagram"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.brackets.end.diagram"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\b([A-Za-z_][A-Za-z0-9_]*(?:-[A-Za-z0-9_]+)*)\\s*(:)",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.attribute.diagram"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.diagram"
+            }
+          }
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "match": "(?<=:)\\s*([^,\\]\"\\s](?:(?!\\s//)[^,\\]\\n])*?)(?=\\s*(?:,|\\]|\\s//|$))",
+          "captures": {
+            "1": {
+              "name": "constant.other.attribute-value.diagram"
+            }
+          }
+        },
+        {
+          "include": "#comment"
+        },
+        {
+          "name": "punctuation.separator.comma.diagram",
+          "match": ","
+        }
+      ]
+    },
+    "label": {
+      "match": "(:)\\s*(?!\")(\\S.*?)(?=\\s+//|\\s*;|\\s*\\}|\\s*$)",
+      "captures": {
+        "1": {
+          "name": "punctuation.separator.label.diagram"
+        },
+        "2": {
+          "name": "string.unquoted.label.diagram"
+        }
+      }
+    },
+    "arrow": {
+      "name": "keyword.operator.arrow.diagram",
+      "match": "<->|-->|->>|->|<-|--"
+    },
+    "id": {
+      "name": "entity.name.tag.node.diagram",
+      "match": "\\b[A-Za-z_][A-Za-z0-9_]*(?:-[A-Za-z0-9_]+)*\\b"
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.section.block.diagram",
+          "match": "[{}]"
+        },
+        {
+          "name": "punctuation.separator.diagram",
+          "match": "[,;:]"
+        }
+      ]
+    }
+  }
+}

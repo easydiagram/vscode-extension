@@ -1,0 +1,11 @@
+**
+!dist/extension.cjs
+!dist/extension.cjs.LEGAL.txt
+!syntaxes/**
+!language-configuration.json
+!README.md
+!package.json
+!THIRD_PARTY_NOTICES.md
+!images/icon.png
+!LICENSE
+!CHANGELOG.md

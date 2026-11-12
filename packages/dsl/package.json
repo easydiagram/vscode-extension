@@ -1,0 +1,20 @@
+{
+  "name": "@app/dsl",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./language": "./src/language.ts",
+    "./grammar": "./grammar/diagram.tmLanguage.json"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@app/icons": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "@types/node": "26.6.6"
+  }
+}
