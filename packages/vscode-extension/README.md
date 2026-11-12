@@ -37,11 +37,11 @@ api -> db : SQL
 
 The extension sets these defaults for `.diagram` files; override them in your settings under `"[diagram]"`:
 
-| Setting                  | Default |
-| ------------------------ | ------- |
-| `editor.formatOnSave`    | `true`  |
-| `editor.tabSize`         | `2`     |
-| `editor.insertSpaces`    | `true`  |
+| Setting               | Default |
+| --------------------- | ------- |
+| `editor.formatOnSave` | `true`  |
+| `editor.tabSize`      | `2`     |
+| `editor.insertSpaces` | `true`  |
 
 ## Open source
 

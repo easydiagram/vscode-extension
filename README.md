@@ -52,11 +52,11 @@ Connect your coding agent to EasyDiagram over MCP and it writes files like this 
 
 ## Repository layout
 
-| Path                         | What it is                                                         |
-| ---------------------------- | ------------------------------------------------------------------ |
-| `packages/vscode-extension`  | The extension: activation, diagnostics, formatter, grammar wiring  |
-| `packages/dsl`               | The language core it bundles: parser, validator, formatter, grammar |
-| `packages/icons`             | The icon name registry the validator checks against                |
+| Path                        | What it is                                                          |
+| --------------------------- | ------------------------------------------------------------------- |
+| `packages/vscode-extension` | The extension: activation, diagnostics, formatter, grammar wiring   |
+| `packages/dsl`              | The language core it bundles: parser, validator, formatter, grammar |
+| `packages/icons`            | The icon name registry the validator checks against                 |
 
 This repository is a mirror: the code is developed in the EasyDiagram monorepo and copied here on every change, so the
 published extension is built from exactly this source. Issues and pull requests are welcome here; accepted changes are
