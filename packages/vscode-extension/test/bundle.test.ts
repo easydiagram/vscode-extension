@@ -68,7 +68,8 @@ beforeAll(() => {
   });
   const extension = createRequire(import.meta.url)(join(dir, 'dist', 'extension.cjs'));
   extension.activate({ subscriptions: [] });
-});
+  // Builds the extension first: on CI's small runners, next to other packages' tests, that takes over 10 s.
+}, 60_000);
 
 it('activates from the bundle and publishes diagnostics for open documents', () => {
   const list = fake.published.get('file:///a.diagram') ?? [];
