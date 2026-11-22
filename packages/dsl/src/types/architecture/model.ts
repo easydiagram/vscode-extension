@@ -1,6 +1,13 @@
 import { FALLBACK_ICON_NAME, resolveIcon } from '@app/icons';
 import type { Attr, Document, EdgeOp, EdgeStmt, Statement } from '../../core/ast';
-import { COLORS, DIRECTIONS, type Color, type Direction } from '../../core/constants';
+import {
+  COLORS,
+  DIAGRAM_STYLES,
+  DIRECTIONS,
+  type Color,
+  type DiagramStyle,
+  type Direction,
+} from '../../core/constants';
 import { diag, type Diagnostic, type Span } from '../../core/diagnostics';
 import { LIMITS } from '../../core/limits';
 import { oneOf } from '../../core/narrow';
@@ -43,6 +50,8 @@ export interface ArchEdge {
 
 export interface ArchitectureModel {
   direction: Direction;
+  /** The look it is drawn in: its `style:` header, else crisp. */
+  style: DiagramStyle;
   title?: string;
   nodes: Map<string, ArchNode>;
   groups: Map<string, ArchGroup>;
@@ -66,6 +75,7 @@ const OP_STYLE: Record<EdgeOp, { arrow: Arrow; style: 'solid' | 'dashed' }> = {
 export function buildArchitectureModel(doc: Document, diagnostics: Diagnostic[]): ArchitectureModel {
   const model: ArchitectureModel = {
     direction: readDirection(doc, diagnostics),
+    style: readStyle(doc, diagnostics),
     nodes: new Map(),
     groups: new Map(),
     edges: [],
@@ -181,6 +191,23 @@ export function buildArchitectureModel(doc: Document, diagnostics: Diagnostic[])
     );
   }
   return model;
+}
+
+function readStyle(doc: Document, diagnostics: Diagnostic[]): DiagramStyle {
+  const header = doc.headers.style;
+  if (!header) return 'crisp';
+  const style = oneOf(DIAGRAM_STYLES, header.value.trim().toLowerCase());
+  if (style) return style;
+  diagnostics.push(
+    diag(
+      'error',
+      'E_UNKNOWN_STYLE',
+      header.valueSpan,
+      `Unknown style '${header.value.trim()}'`,
+      `Styles: ${DIAGRAM_STYLES.join(', ')}`,
+    ),
+  );
+  return 'crisp';
 }
 
 function readDirection(doc: Document, diagnostics: Diagnostic[]): Direction {

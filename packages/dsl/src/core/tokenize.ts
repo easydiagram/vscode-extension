@@ -19,7 +19,7 @@ export interface Token {
 }
 
 const OPERATORS = ['<->', '-->', '->>', '->', '<-', '--'] as const;
-const HEADER_KEYS = new Set(['type', 'direction', 'title']);
+const HEADER_KEYS = new Set(['type', 'direction', 'style', 'title']);
 const isSpace = (c: string | undefined) => c === ' ' || c === '\t' || c === '\r';
 const isIdentStart = (c: string | undefined) => !!c && /[A-Za-z_]/.test(c);
 const isIdentPart = (c: string | undefined) => !!c && /[A-Za-z0-9_]/.test(c);

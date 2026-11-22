@@ -5,7 +5,7 @@ import { oneOf } from './narrow';
 import { illegalCharIndexes } from './text-safety';
 import { Scanner, type Mark } from './scanner';
 
-const HEADER_KEYS: readonly HeaderKey[] = ['type', 'direction', 'title'];
+const HEADER_KEYS: readonly HeaderKey[] = ['type', 'direction', 'style', 'title'];
 const OPERATORS: readonly EdgeOp[] = ['<->', '-->', '->>', '->', '<-', '--'];
 const UNTERMINATED_HINT = 'Close the string with "';
 

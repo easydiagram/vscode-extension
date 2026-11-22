@@ -85,7 +85,7 @@ export function format(source: string): string {
     const tail = join(stmt.tail);
     const after = (s: string) => (s === '' ? '' : s.startsWith(',') ? s : ` ${s}`);
     if (stmt.attrs === null) {
-      lines.push({ depth, code: head + after(tail) });
+      lines.push({ depth, code: lowerStyle(head) + after(tail) });
     } else if (!stmt.hasAttrComments) {
       const list = `[${stmt.attrs.map(attrText).join(', ')}]`;
       lines.push({ depth, code: `${head === '' ? '' : `${head} `}${list}${after(tail)}` });
@@ -220,5 +220,13 @@ const commentsOf = (src: string): string =>
       .map((t) => t.text.trimEnd()),
   );
 
-const meaning = (src: string) =>
-  JSON.stringify(parse(src).doc, (key, value: unknown) => (/span$/i.test(key) ? undefined : value));
+const meaning = (src: string) => {
+  const { doc } = parse(src);
+  const style = doc.headers.style;
+  if (style) doc.headers.style = { ...style, value: style.value.trim().toLowerCase() };
+  return JSON.stringify(doc, (key, value: unknown) => (/span$/i.test(key) ? undefined : value));
+};
+
+/** The style value is written in lower case (`style: 3D` → `style: 3d`). */
+const lowerStyle = (code: string): string =>
+  code.replace(/^(style\s*:\s*)(.*)$/, (_, key: string, value: string) => key + value.toLowerCase());

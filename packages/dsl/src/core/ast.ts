@@ -1,6 +1,6 @@
 import type { Span } from './diagnostics';
 
-export type HeaderKey = 'type' | 'direction' | 'title';
+export type HeaderKey = 'type' | 'direction' | 'style' | 'title';
 export type EdgeOp = '<->' | '-->' | '->>' | '->' | '<-' | '--';
 
 export interface Header {

@@ -4,6 +4,7 @@ export type DiagnosticCode =
   | 'E_SYNTAX'
   | 'E_MISSING_TYPE'
   | 'E_UNKNOWN_TYPE'
+  | 'E_UNKNOWN_STYLE'
   | 'E_UNSUPPORTED_TYPE'
   | 'E_TYPE_MISMATCH'
   | 'E_DUPLICATE_ID'
